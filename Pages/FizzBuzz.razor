@@ -1,0 +1,148 @@
+﻿@page "/fizzbuzz"
+
+<h1 class="text-center">FizzBuzz Challenge:</h1>
+<hr />
+<h5 class="text-center">
+    The Traditional Fizz Buzz Challenge is to write a program that
+    prints the numbers one through one hundred (1-100). But for multiples
+    of three, print "Fizz" instead of the number and for multiples of five
+    print "Buzz". For numbers that are multiples of both three and five,
+    print "FizzBuzz". The program below can check for multiples of three
+    or five, or you can enter your own numbers to see different results
+</h5>
+<hr />
+
+<div class="row py-1">
+    <div class="col-3">Fizz Value:</div>
+    <div class="col"><input type="number" @bind="@FizzValue" placeholder="Enter a number" /></div>
+</div>
+
+<div class="row py-1">
+    <div class="col-3">Buzz Value:</div>
+    <div class="col"><input type="number" @bind="@BuzzValue" placeholder="Enter a number"/></div>
+</div>
+
+<div class="row py-1">
+    <div class="col">
+        <button type="submit" @onclick="CalculateFizzBuzz" class="btn btn-primary btn-block">Let's Find Out!</button>
+    </div>
+</div>
+
+@*<form>
+    <div class="form-group">
+        <label for="FizzValue">Value 1:</label>
+        <input type="number" class="form-control" @bind="@FizzValue" placeholder="Enter a number">
+    </div>
+    <div class="form-group">
+        <label for="BuzzValue">Value 2:</label>
+        <input type="number" class="form-control" @bind="@BuzzValue" placeholder="Enter another number">
+    </div>
+    <button type="submit" @onclick="CalculateFizzBuzz" class="btn btn-primary btn-block">Let's Find Out!</button>
+</form>*@
+
+@if (fizzBuzzItems.Count() > 0)
+{
+    <div class="row pt-5">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover table-sm">
+                <thead class="thead-dark">
+                    <tr>
+                        <th colspan="10">Results:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (var i = 0; i < 100; i += 10)
+                    {
+                        <tr>
+                            <td class="@fizzBuzzItems[i].ClassName">@fizzBuzzItems[i].Value</td>
+                            <td class="@fizzBuzzItems[i+1].ClassName">@fizzBuzzItems[i+1].Value</td>
+                            <td class="@fizzBuzzItems[i+2].ClassName">@fizzBuzzItems[i+2].Value</td>
+                            <td class="@fizzBuzzItems[i+3].ClassName">@fizzBuzzItems[i+3].Value</td>
+                            <td class="@fizzBuzzItems[i+3].ClassName">@fizzBuzzItems[i+4].Value</td>
+                            <td class="@fizzBuzzItems[i+4].ClassName">@fizzBuzzItems[i+5].Value</td>
+                            <td class="@fizzBuzzItems[i+5].ClassName">@fizzBuzzItems[i+6].Value</td>
+                            <td class="@fizzBuzzItems[i+7].ClassName">@fizzBuzzItems[i+7].Value</td>
+                            <td class="@fizzBuzzItems[i+8].ClassName">@fizzBuzzItems[i+8].Value</td>
+                            <td class="@fizzBuzzItems[i+9].ClassName">@fizzBuzzItems[i+9].Value</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+@*TODO:
+    -
+*@
+
+
+@code {
+
+    List<FizzBuzzItem> fizzBuzzItems = new List<FizzBuzzItem>();
+
+    private int FizzValue = 3;
+    private int BuzzValue = 5;
+
+    bool Fizz = false;
+    bool Buzz = false;
+
+    void CalculateFizzBuzz()
+    {
+        //check to see if values are empty by default
+        if (fizzBuzzItems.Count > 0)
+        {
+            fizzBuzzItems.Clear();
+        }
+
+        for (var i = 1; i <= 100; i++)
+        {
+            // Expressions below test whether a current iteration from 1-100 is equal to our definition of "fizz" or "buzz" (boolean).
+            // It reads "Fizz is T/F if i (current iteration) divided by Fizz/Buzz Value's remainder is equal to zero. 
+            // Ex) Fizz = true if Fizz = (3 divided by 3's remainder is equal to 0)
+            Fizz = (i % FizzValue == 0);
+            Buzz = (i % BuzzValue == 0);
+
+            if (Fizz == true && Buzz == true)
+            {
+                fizzBuzzItems.Add(new FizzBuzzItem { Value = "FizzBuzz", ClassName = "fizzBuzz" });
+
+            }
+            else if (Fizz == true)
+            {
+
+                fizzBuzzItems.Add(new FizzBuzzItem { Value = "Fizz", ClassName = "fizz" });
+
+            }
+            else if (Buzz == true)
+            {
+
+                fizzBuzzItems.Add(new FizzBuzzItem { Value = "Buzz", ClassName = "buzz" });
+
+            }
+            else
+            {
+                fizzBuzzItems.Add(new FizzBuzzItem { Value = i.ToString(), ClassName = "noBuzz" });
+
+            }
+        }
+    }
+
+    class FizzBuzzItem
+    {
+        public string Value { get; set; }
+        public string ClassName { get; set; }
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
