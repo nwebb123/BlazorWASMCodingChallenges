@@ -29,12 +29,17 @@
             <div class="col-2"></div>
         </div>
 
-        <div class="row py-3">
+        @if (dieOne.RollValue > 0)
+        {
+               <div class="row py-3">
             <div class="col">
                 @*Should be able to write @dieOne.RollValue to access value of rolls but its not working...*@
-                <h3>You rolled a dieOne and a dieTwo</h3>
+                <h3>You rolled a @dieOne.RollValue and a @dieTwo.RollValue</h3>
+                @*<h3>Test: @randomTestVariable</h3>*@
             </div>      
         </div>
+        }
+     
 
     </div>
 
@@ -43,19 +48,19 @@
 </div>
 
 @code {
+    int randomTestVariable = 10;
     //Creating a class of dice, 
     public class Die
     {
         public int RollValue { get; set; }   
-    } 
+    }   
+    
+    Random random = new Random();
+    Die dieOne = new Die();
+    Die dieTwo = new Die();
     //Method to "roll" the dice
     void RollTwoDice()
     {
-       
-        Random random = new Random();
-        Die dieOne = new Die();
-        Die dieTwo = new Die();
-
         dieOne.RollValue = random.Next(1, 7);
         dieTwo.RollValue = random.Next(1, 7);
       
