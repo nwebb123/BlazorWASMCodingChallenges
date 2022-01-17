@@ -102,8 +102,8 @@
     private int FizzValue = 3;
     private int BuzzValue = 5;
 
-    bool Fizz = false;
-    bool Buzz = false;
+    bool fizz = false;
+    bool buzz = false;
 
     void CalculateFizzBuzz()
     {
@@ -118,21 +118,21 @@
             // Expressions below test whether a current iteration from 1-100 is equal to our definition of "fizz" or "buzz" (boolean).
             // It reads "Fizz is T/F if i (current iteration) divided by Fizz/Buzz Value's remainder is equal to zero.
             // Ex) Fizz = true if Fizz = (3 divided by 3's remainder is equal to 0)
-            Fizz = (i % FizzValue == 0);
-            Buzz = (i % BuzzValue == 0);
+            fizz = (i % FizzValue == 0);
+            buzz = (i % BuzzValue == 0);
 
-            if (Fizz == true && Buzz == true)
+            if (fizz == true && buzz == true)
             {
                 fizzBuzzItems.Add(new FizzBuzzItem { Value = "FizzBuzz", ClassName = "fizzBuzz" });
 
             }
-            else if (Fizz == true)
+            else if (fizz == true)
             {
 
                 fizzBuzzItems.Add(new FizzBuzzItem { Value = "Fizz", ClassName = "fizz" });
 
             }
-            else if (Buzz == true)
+            else if (buzz == true)
             {
 
                 fizzBuzzItems.Add(new FizzBuzzItem { Value = "Buzz", ClassName = "buzz" });
