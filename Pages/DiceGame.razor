@@ -2,7 +2,6 @@
 
 
 <div class="container-fluid ">
-    @*Title of Challenge*@
     <div class="row justify-content-center">
         <div class="col">
             <h1 class="text-center">Dice Roller:</h1>
@@ -21,7 +20,7 @@
     <hr />
     <div class="text-center ">
 
-        <div class="row py-3"> 
+        <div class="row py-3">
             <div class="col-2"></div>
             <div class="col-8">
                 <button @onclick="RollTwoDice" class="btn btn-primary btn-block">LETS ROLL</button>
@@ -31,29 +30,31 @@
 
         @if (dieOne.RollValue > 0)
         {
-               <div class="row py-3">
-            <div class="col">
-                @*Should be able to write @dieOne.RollValue to access value of rolls but its not working...*@
-                <h3>You rolled a @dieOne.RollValue and a @dieTwo.RollValue</h3>
-                @*<h3>Test: @randomTestVariable</h3>*@
-            </div>      
-        </div>
+            <div class="row py-3">
+                <div class="col">                  
+                    <h3>You rolled a @dieOne.RollValue and a @dieTwo.RollValue</h3>                  
+                </div>
+            </div>
         }
-   
+
     </div>
-
-
-
 </div>
 
+
+
+
 @code {
-    int randomTestVariable = 10;
-    //Creating a class of dice, 
+    //Creating a class of dice with a property describing a rolled die's value.
     public class Die
     {
-        public int RollValue { get; set; }   
-    }   
-    
+        public int RollValue { get; set; }
+    }
+
+    /*
+     - random is a variable created from the Random Class. Combined with .Next(1,7), random will assign a random non-negative integer between 1-6 (7 is upper bound).
+     - The random non-negative integer b/w 1-6 is then assigned to the RollValue property for each instantiated die. 
+     - For two dice, this method works but might get out of hand if someone wanted to roll lots of dice, or multiple sets of dice. 
+     */ 
     Random random = new Random();
     Die dieOne = new Die();
     Die dieTwo = new Die();
@@ -62,11 +63,8 @@
     {
         dieOne.RollValue = random.Next(1, 7);
         dieTwo.RollValue = random.Next(1, 7);
-      
-        Console.WriteLine(dieOne.RollValue);
-        Console.WriteLine(dieTwo.RollValue);
-    }
 
+    }
 }
 
 
