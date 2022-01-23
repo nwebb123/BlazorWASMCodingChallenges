@@ -1,0 +1,24 @@
+﻿@*The @bind attribute below utilizes 2-way data binding for the frontend to the backend*@    
+
+<tr class="todo @tableClass">
+    <td class="text-center"><input type="checkbox" @bind="TaskComplete"  /></td>
+
+    <td class="@textClass">@Text</td>
+
+</tr>
+
+
+@code {
+    [Parameter]
+    public string Text { get; set; }
+
+    [Parameter]
+    public bool TaskComplete { get; set; } 
+
+    //dynamic css class for the table above
+    string textClass => TaskComplete ? "done text-muted" : null;
+
+    string tableClass => TaskComplete ? "table-secondary" : null;
+
+
+}
