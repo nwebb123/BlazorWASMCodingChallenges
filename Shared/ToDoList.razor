@@ -1,0 +1,20 @@
+﻿<h2>To Do:</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th style="width:10%;"></th>
+            <th class="underline">Tasks</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var toDo in Todos)
+        {
+            
+            <ToDoItem Text="@toDo.Text" TaskComplete="@toDo.Done"/>
+        }
+    </tbody>
+</table>
+@code {
+    [Parameter]
+    public IList<ToDo> Todos { get; set; }
+}

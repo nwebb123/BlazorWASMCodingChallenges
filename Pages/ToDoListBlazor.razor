@@ -1,0 +1,35 @@
+﻿@page "/todolistblazor"
+
+
+<div class="container-fluid ">
+    @*Title of Challenge*@
+    <div class="row justify-content-center">
+        <div class="col">
+            <h1 class="text-center">ToDo App</h1>
+            <hr />
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-xs col-sm col-md-10 col-lg-8">
+            <h5 class="text-center">
+                This is a simple "to do" list, built utilizing Blazor architecture and the .NET framework.
+            </h5>
+
+        </div>
+    </div>
+
+    <hr />
+
+    <ToDoList Todos="@toDos"/>
+   
+</div>
+
+@code {
+    IList<ToDo> toDos = new List<ToDo>
+    {
+        new ToDo {Text = "Polish the UI"},
+        //new ToDo {Text = "Text two here"}
+    };
+
+}
