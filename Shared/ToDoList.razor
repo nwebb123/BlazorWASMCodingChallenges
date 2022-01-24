@@ -14,7 +14,21 @@
         }
     </tbody>
 </table>
+
+<NewItemEntry OnNewItem="@OnNewItem" />
 @code {
     [Parameter]
     public IList<ToDo> Todos { get; set; }
+
+    void OnNewItem(string newItemText)
+    {
+        if(Todos != null)
+        {
+            Todos.Add(new ToDo
+                {
+                    Text = newItemText
+                });
+            StateHasChanged();
+        }
+    }
 }
