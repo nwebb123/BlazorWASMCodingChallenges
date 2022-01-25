@@ -3,14 +3,14 @@
 <tr class="todo @tableClass">
     <td class="text-center"><input type="checkbox" @bind="TaskComplete"  /></td>
 
-    <td class="@textClass">@Text</td>
+    <td class="@textClass">@Description</td>
 
 </tr>
 
 
 @code {
     [Parameter]
-    public string Text { get; set; }
+    public string Description { get; set; }
 
     [Parameter]
     public bool TaskComplete { get; set; } 

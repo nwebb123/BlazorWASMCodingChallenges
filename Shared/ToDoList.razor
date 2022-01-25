@@ -1,4 +1,4 @@
-﻿<h2>To Do:</h2>
+﻿@*<h2>To Do:</h2>*@
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -10,7 +10,7 @@
         @foreach (var toDo in Todos)
         {
             
-            <ToDoItem Text="@toDo.Text" TaskComplete="@toDo.Done"/>
+            <ToDoItem Description="@toDo.Description" TaskComplete="@toDo.Done"/>
         }
     </tbody>
 </table>
@@ -20,13 +20,13 @@
     [Parameter]
     public IList<ToDo> Todos { get; set; }
 
-    void OnNewItem(string newItemText)
+    void OnNewItem(string newItemDescription)
     {
         if(Todos != null)
         {
             Todos.Add(new ToDo
                 {
-                    Text = newItemText
+                    Description = newItemDescription
                 });
             StateHasChanged();
         }
