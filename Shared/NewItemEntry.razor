@@ -1,17 +1,17 @@
 ﻿<div class="input-group input-group-lg">
     <div class="input-group-prepend">
-        <span class="input-group-text">New Item</span>
+        <span class="input-group-text">To Do:</span>
     </div>
-    <input type="text" class="form-control" placeholder="Enter new item here"
-           @bind-value="Text" @bind-value:event="oninput" @onkeypress="KeyPress" />
+    <input type="text" class="form-control" placeholder="Description of task"
+           @bind-value="Description" @bind-value:event="oninput" @onkeypress="KeyPress" />
     <div class="input-group-append">
         <button class="btn btn-secondary @buttonDisabled" @onclick="NewItem">Add Item</button>
     </div>
 </div>
 @code {
-    string Text { get; set; }
+    string Description { get; set; }
 
-    string buttonDisabled => Text != null && Text.Length > 0 ? null : "disabled";
+    string buttonDisabled => Description != null && Description.Length > 0 ? null : "disabled";
 
     [Parameter]
     public Action<string> OnNewItem { get; set; }
@@ -20,8 +20,8 @@
     {
         if (OnNewItem != null)
         {
-            OnNewItem(Text);
-            Text = "";
+            OnNewItem(Description);
+            Description = "";
         }
     }
     //Even handler to detect when user presses enter key
