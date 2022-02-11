@@ -20,15 +20,16 @@
     <div class="text-center">
 
         <h4>On-click Method Examples</h4><br />
-        <p><button @onclick="@VoidMethod">Void Method</button></p>
+        <p><button @onclick="@OnClickVoid">On-click Void Method</button></p>
         <p>@timeOfClickVoid</p>
 
         @*For regular tasks, you do not need async or await. But for asynchronous functions, you need to add async and await keywords*@
-        <p><button @onclick="@(async () => await TaskMethod("Task method "))">Task or Async Method</button></p>
+        <p><button @onclick="@(async () => await OnClickTask("On-click Task method "))">On-click Task or Async Method</button></p>
         <p>@timeOfClickTask</p>
+        
 
         @*This method is extremely useful when you need to change one value or a single variable, like a boolean or an integer that changes states of app.If you need to use if statements or loops, it will get too messy. Better to use Task Method instead*@
-        <p><button @onclick="@( () => { timeOfClickMultipleMethods = "Executed at " + DateTime.UtcNow.ToShortTimeString(); })">Anonymous Method</button></p>
+        <p><button @onclick="@( () => { timeOfClickMultipleMethods = "Executed at " + DateTime.UtcNow.ToShortTimeString(); })">On-click Anonymous Method</button></p>
         <p>@timeOfClickMultipleMethods</p>
 
         <hr />
@@ -58,14 +59,13 @@
     string dataBindingBasic = "";
     string dataBindingValue = "";
     
-
     //Not as common
-    void VoidMethod()
+    void OnClickVoid()
     {
         timeOfClickVoid = "Executed at " + DateTime.UtcNow.ToShortTimeString();
     }
 
-    Task TaskMethod(string methodName)
+    Task OnClickTask(string methodName)
     {
         timeOfClickTask = "Executed " + methodName + "at " + DateTime.UtcNow.ToShortTimeString();
 
